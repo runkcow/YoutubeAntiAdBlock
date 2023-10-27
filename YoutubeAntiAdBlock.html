@@ -43,7 +43,7 @@
             border-radius:5px;
             padding:10px;
         }
-        input[type=button]
+        button
         {
             background-color:rgb(34,34,34);
             border-width:2px;
@@ -51,7 +51,7 @@
             border-radius:5px;
             padding:10px;
         }
-        input[type=button]:hover
+        button:hover
         {
             background-color:rgb(41,41,41);
         }
@@ -62,44 +62,51 @@
             height:100%;
         }
     </style>
-    <script>
-        function changeVideo()
-        {
-            const URL_START = "https://www.youtube.com/embed/";
-            let str = document.getElementById("link").value;
-            /*
-             * scroll from left to right until first '=' 
-             * stop at first '&'
-             */
-            let a = null;
-            let b = null;
-            for (let i = 0; i < str.length; i++)
-            {
-                if (a == null && str.charAt(i) == '=')
-                {
-                    a = i;
-                }
-                if (b == null && str.charAt(i) == '&')
-                {
-                    b = i;
-                }
-            }
-            let data = URL_START.concat(str.slice(a + 1, (b != null) ? b : str.length));
-            console.log(data);
-            document.getElementById("video").src = data;
-        }
-    </script>
 </head>
 <body>
     <div class="wholeContainer">
-        <form>
-            <div class="inputContainer">
-                <input type="text" class="theBestFont" id="link" name="link" placeholder="Youtube url...">
-                <input type="button" class="theBestFont" value="Push" onclick="changeVideo()">
-            </div>
-        </form>
+        <div class="inputContainer">
+            <input id="link" name="link" type="text" class="theBestFont" placeholder="Youtube url...">
+            <button id="push" class="theBestFont" onclick="changeVideo()">Push</button>
+        </div>
         <iframe id="video" src="" style="padding-left:10px;" allow="fullscreen;"></iframe>
     </div>
 </body>
-
 </html>
+
+<script>
+    document.getElementById("link").addEventListener("keypress", function(e)
+    {
+        if (e.keyCode === 13)
+        {
+            e.preventDefault();
+            document.getElementById("push").click();
+        }
+    });
+
+    function changeVideo()
+    {
+        const URL_START = "https://www.youtube.com/embed/";
+        let str = document.getElementById("link").value;
+        /*
+         * scroll from left to right until first '=' 
+         * stop at first '&'
+         */
+        let a = null;
+        let b = null;
+        for (let i = 0; i < str.length; i++)
+        {
+            if (a == null && str.charAt(i) == '=')
+            {
+                a = i;
+            }
+            if (b == null && str.charAt(i) == '&')
+            {
+                b = i;
+            }
+        }
+        let data = URL_START.concat(str.slice(a + 1, (b != null) ? b : str.length));
+        console.log(data);
+        document.getElementById("video").src = data;
+    }
+</script>
