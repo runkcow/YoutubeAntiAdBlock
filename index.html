@@ -95,7 +95,11 @@
         }
     });
 
-    // gets the value of the key in url parameters
+    /**
+     * gets value with indicated key parameter
+     * @param key String
+     * @return undefined null String
+     */
     function getURLParameter (key)
     {
         let url = window.location.href.split("?")[1];
@@ -114,7 +118,11 @@
         }
     }
 
-    // extracts url from youtube link
+    /**
+     * extracts url from youtube link
+     * @param str String
+     * @return String
+     */
     function extractURL (str)
     {
         let a = null;
@@ -133,7 +141,9 @@
         return str.slice(a + 1, (b != null) ? b : str.length);
     }
 
-    // function that plays when button or enter is pressed
+    /**
+     * function that plays when button or enter is pressed
+     */
     function changeVideo ()
     {
         // console.log(window.location.href);
@@ -151,7 +161,11 @@
         // document.getElementById("video").src = URL_START.concat(data);
     }
 
-    // modifies parameter url with specific values
+    /**
+     * modifies parameter url with specific values
+     * @param str String
+     * @return String
+     */
     function fillURL (str)
     {
         if (str === null)
