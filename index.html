@@ -76,7 +76,7 @@
             <input id="link" name="link" type="text" class="theBestFont" placeholder="Youtube url...">
             <button id="push" class="theBestFont" onclick="changeVideo()">Watch</button>
         </div>
-        <iframe id="video" src="" style="padding-left:10px;" allow="fullscreen;"></iframe>
+        <iframe id="video" src="fillURL(getURLParameter('url'))" style="padding-left:10px;" allow="fullscreen;"></iframe>
     </div>
 </body>
 </html>
@@ -91,14 +91,26 @@
         }
     });
 
-    function changeVideo()
+    function getURLParameter (key)
     {
-        const URL_START = "https://www.youtube.com/embed/";
-        let str = document.getElementById("link").value;
-        /*
-         * scroll from left to right until first '=' 
-         * stop at first '&'
-         */
+        let url = window.location.href.split("?")[1];
+        if (url === undefined || url === null)
+        {
+            return null;
+        }
+        url = url.split('&');
+        for (let i = 0; i < url.length; i++)
+        {
+            let data = url[i].split('=');
+            if (data[0] == key)
+            {
+                return data[1]; 
+            }
+        }
+    }
+
+    function extractURL (str)
+    {
         let a = null;
         let b = null;
         for (let i = 0; i < str.length; i++)
@@ -112,8 +124,30 @@
                 b = i;
             }
         }
-        let data = URL_START.concat(str.slice(a + 1, (b != null) ? b : str.length));
-        console.log(data);
-        document.getElementById("video").src = data;
+        return str.slice(a + 1, (b != null) ? b : str.length);
     }
+
+    function changeVideo ()
+    {
+        // console.log(window.location.href);
+        
+        // const URL_START = "https://www.youtube.com/embed/";
+        const URL_START = "https://dadrunkcow.github.io/YoutubeAntiAdBlock/?url=";
+        let str = document.getElementById("link").value;
+        /*
+         * scroll from left to right until first '=' 
+         * stop at first '&'
+         */
+        let data = extractURL(str);
+        // console.log(data);
+        location.href = URL_START.concat(data)
+        // document.getElementById("video").src = URL_START.concat(data);
+    }
+
+    function fillURL (str)
+    {
+        const URL_START = "https://www.youtube.com/embed/";
+        return URL_START.concat(str);
+    }
+
 </script>
