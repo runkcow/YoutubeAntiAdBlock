@@ -83,7 +83,7 @@
 
 <script>
     // changes iframe video src to parameter url
-    document.getElementById("video").src = fillURL(getURLParameter("url"));
+    document.getElementById("video").src = fillURL(getURLParameter(window.location.href, "url"));
 
     // listens to enter key presses on input field
     document.getElementById("link").addEventListener("keypress", function(e)
@@ -97,12 +97,13 @@
 
     /**
      * gets value with indicated key parameter
+     * @param url String
      * @param key String
      * @return undefined null String
      */
-    function getURLParameter (key)
+    function getURLParameter (url, key)
     {
-        let url = window.location.href.split("?")[1];
+        url = url.split('?');
         if (url === undefined || url === null)
         {
             return null;
@@ -119,29 +120,6 @@
     }
 
     /**
-     * extracts url from youtube link
-     * @param str String
-     * @return String
-     */
-    function extractURL (str)
-    {
-        let a = null;
-        let b = null;
-        for (let i = 0; i < str.length; i++)
-        {
-            if (a == null && str.charAt(i) == '=')
-            {
-                a = i;
-            }
-            if (b == null && str.charAt(i) == '&')
-            {
-                b = i;
-            }
-        }
-        return str.slice(a + 1, (b != null) ? b : str.length);
-    }
-
-    /**
      * function that plays when button or enter is pressed
      */
     function changeVideo ()
@@ -155,7 +133,7 @@
          * scroll from left to right until first '=' 
          * stop at first '&'
          */
-        let data = extractURL(str);
+        let data = getURLParameter(str, "v");
         // console.log(data);
         location.href = URL_START.concat(data)
         // document.getElementById("video").src = URL_START.concat(data);
