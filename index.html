@@ -74,7 +74,7 @@
     <div class="wholeContainer">
         <div class="inputContainer">
             <input id="link" name="link" type="text" class="theBestFont" placeholder="Youtube url...">
-            <button id="push" class="theBestFont" onclick="changeVideo()">Watch</button>
+            <button id="watch" class="theBestFont" onclick="changeVideo()">Watch</button>
         </div>
         <iframe id="video" src="" style="padding-left:10px;" allow="fullscreen;"></iframe>
     </div>
@@ -91,32 +91,34 @@
         if (e.keyCode === 13)
         {
             e.preventDefault();
-            document.getElementById("push").click();
+            document.getElementById("watch").click();
         }
     });
 
     /**
      * gets value with indicated key parameter
-     * @param url String
-     * @param key String
+     * @param {String} url
+     * @param {String} key
      * @return undefined null String
      */
     function getURLParameter (url, key)
     {
-        url = url.split('?');
-        if (url === undefined || url === null)
+        console.log(url);
+        let parameter = url.split('?');
+        if (parameter.length <= 1)
         {
             return null;
         }
-        url = url.split('&');
-        for (let i = 0; i < url.length; i++)
+        parameter = parameter[1].split('&');
+        for (let i = 0; i < parameter.length; i++)
         {
-            let data = url[i].split('=');
+            let data = parameter[i].split('=');
             if (data[0] == key)
             {
                 return data[1]; 
             }
         }
+        return null;
     }
 
     /**
@@ -124,15 +126,9 @@
      */
     function changeVideo ()
     {
-        // console.log(window.location.href);
-        
         // const URL_START = "https://www.youtube.com/embed/";
         const URL_START = "https://dadrunkcow.github.io/YoutubeAntiAdBlock/?url=";
         let str = document.getElementById("link").value;
-        /*
-         * scroll from left to right until first '=' 
-         * stop at first '&'
-         */
         let data = getURLParameter(str, "v");
         // console.log(data);
         location.href = URL_START.concat(data)
@@ -141,8 +137,8 @@
 
     /**
      * modifies parameter url with specific values
-     * @param str String
-     * @return String
+     * @param {String} str
+     * @return {String}
      */
     function fillURL (str)
     {
