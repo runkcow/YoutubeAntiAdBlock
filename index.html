@@ -128,7 +128,8 @@
     function changeVideo ()
     {
         // const URL_START = "https://www.youtube.com/embed/";
-        const URL_START = "https://dadrunkcow.github.io/YoutubeAntiAdBlock/?url=";
+        // const URL_START = "https://dadrunkcow.github.io/YoutubeAntiAdBlock/?url=";
+        const URL_START = window.location.href.split('?')[0].concat("?url=");
         let str = document.getElementById("link").value;
         let data = getURLParameter(str, "v");
         // console.log(data);
