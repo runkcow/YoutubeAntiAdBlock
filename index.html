@@ -123,6 +123,25 @@
     }
 
     /**
+     * collect the correct url to create embedded youtube link from all types of youtube link variations
+     * variations as listed with '#' as desired parameter
+     * - https://www.youtube.com/watch?v=#
+     * - https://youtu.be/#
+     * - https://www.youtube.com/embed/#
+     * - https://www.youtube.com/shorts/#
+     * @param {String} url
+     * @return {String}
+     */
+    function collectYoutubeParameter (url)
+    {
+        const WIPE = ["https://", "www.", "youtube.com/", "youtu.be/", "watch?v=", "embed/", "shorts/"];
+        WIPE.forEach((a) => {
+            url = url.replace(a, "");
+        });
+        return url; 
+    }
+
+    /**
      * function that plays when button or enter is pressed
      */
     function changeVideo ()
@@ -131,7 +150,7 @@
         // const URL_START = "https://dadrunkcow.github.io/YoutubeAntiAdBlock/?url=";
         const URL_START = window.location.href.split('?')[0].concat("?url=");
         let str = document.getElementById("link").value;
-        let data = getURLParameter(str, "v");
+        let data = collectYoutubeParameter(str);
         // console.log(data);
         location.href = URL_START.concat(data)
         // document.getElementById("video").src = URL_START.concat(data);
