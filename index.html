@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version 1.1 -->
+<!-- Version 1.2 -->
 <html>
 <head>
     <title>YOUTUBE WILL LOSE</title>
@@ -77,7 +77,7 @@
             <input id="link" name="link" type="text" class="theBestFont" placeholder="Youtube url...">
             <button id="watch" class="theBestFont" onclick="changeVideo()">Watch</button>
         </div>
-        <iframe id="video" src="" style="padding-left:10px;" allow="fullscreen;"></iframe>
+        <iframe id="video" src="" style="padding-left:10px;" allow="autoplay; fullscreen;"></iframe>
     </div>
 </body>
 </html>
@@ -168,7 +168,8 @@
             return "";
         }
         const URL_START = "https://www.youtube.com/embed/";
-        return URL_START.concat(str);
+        const URL_END = "?autoplay=1";
+        return URL_START.concat(str, URL_END);
     }
 
 </script>
