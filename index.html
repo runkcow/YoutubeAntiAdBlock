@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version 1.3 -->
+<!-- Version 1.4 -->
 <html>
 <head>
     <title>YOUTUBE WILL LOSE</title>
@@ -85,7 +85,7 @@
     <div class="wholeContainer">
         <div class="inputContainer">
             <!-- THIS IS A COPY OF "collectYoutubeParameter" MAKE TO UPDATE BOTH -->
-            <a id="bookmark" class="dragIcon theBestFont" href='javascript:window.open(("https://dadrunkcow.github.io/YoutubeAntiAdBlock/?url=").concat(location.href.replace(/https:\/\/|www\.|youtube\.com\/|youtu\.be\/|watch\?v=|embed\/|shorts\//gi, "").split("&")[0]))'>
+            <a id="bookmark" class="dragIcon theBestFont" href='javascript:window.open(("https://runkcow.github.io/YoutubeAntiAdBlock/?url=").concat(location.href.replace(/https:\/\/|www\.|youtube\.com\/|youtu\.be\/|watch\?v=|embed\/|shorts\//gi, "").split("&")[0]))'>
                 Click!
             </a>
             <input id="link" name="link" type="text" class="theBestFont" placeholder="Youtube url...">
@@ -166,7 +166,7 @@
     function changeVideo ()
     {
         // const URL_START = "https://www.youtube.com/embed/";
-        // const URL_START = "https://dadrunkcow.github.io/YoutubeAntiAdBlock/?url=";
+        // const URL_START = "https://runkcow.github.io/YoutubeAntiAdBlock/?url=";
         const URL_START = window.location.href.split('?')[0].concat("?url=");
         let str = document.getElementById("link").value;
         let data = collectYoutubeParameter(str);
