@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version 1.4 -->
+<!-- Version 1.5 -->
 <html>
 <head>
     <title>YOUTUBE WILL LOSE</title>
@@ -85,7 +85,7 @@
     <div class="wholeContainer">
         <div class="inputContainer">
             <!-- THIS IS A COPY OF "collectYoutubeParameter" MAKE TO UPDATE BOTH -->
-            <a id="bookmark" class="dragIcon theBestFont" href='javascript:window.open(("https://runkcow.github.io/YoutubeAntiAdBlock/?url=").concat(location.href.replace(/https:\/\/|www\.|youtube\.com\/|youtu\.be\/|watch\?v=|embed\/|shorts\//gi, "").split("&")[0]))'>
+            <a id="bookmark" class="dragIcon theBestFont" href='javascript:window.location.href=("https://runkcow.github.io/YoutubeAntiAdBlock/"+((location.href.includes("youtu"))?"?url="+location.href.replace(/https:\/\/|www\.|youtube\.com\/|youtu\.be\/|watch\?v=|embed\/|shorts\//gi, "").split("&")[0]:""))'>
                 Click!
             </a>
             <input id="link" name="link" type="text" class="theBestFont" placeholder="Youtube url...">
@@ -105,6 +105,8 @@
         window.alert("Drag this to bookmark bar and click in youtube video.");
         return false;
     };
+
+    
 
     // listens to enter key presses on input field
     document.getElementById("link").addEventListener("keypress", function(e)
